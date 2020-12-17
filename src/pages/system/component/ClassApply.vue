@@ -1,17 +1,15 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+  <div class="class-apply"></div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'ClassApply'
 }
 </script>
 
 <style lang="less" scoped>
-  #app {
+  .class-apply {
     width: 100%;
   }
 </style>

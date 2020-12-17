@@ -1,17 +1,15 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+  <div class="course-select"></div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'CourseSelect'
 }
 </script>
 
 <style lang="less" scoped>
-  #app {
+  .course-select {
     width: 100%;
   }
 </style>

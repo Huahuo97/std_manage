@@ -1,17 +1,15 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+  <div class="setting"></div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'Setting'
 }
 </script>
 
 <style lang="less" scoped>
-  #app {
+  .setting {
     width: 100%;
   }
 </style>

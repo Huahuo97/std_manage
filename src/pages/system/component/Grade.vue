@@ -1,17 +1,15 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+  <div class="grade"></div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'Grade'
 }
 </script>
 
 <style lang="less" scoped>
-  #app {
+  .grade {
     width: 100%;
   }
 </style>
