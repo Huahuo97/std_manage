@@ -13,7 +13,7 @@
             <el-input
               placeholder="学号/手机号码"
               clearable
-              v-model="form.name">
+              v-model="form.number">
             </el-input>
           </el-form-item>
           <el-form-item label="密码">
@@ -25,29 +25,62 @@
         </el-form>
         <el-form ref="sub" :model="form" label-width="100px">
           <el-form-item label="">
-            <el-button type="primary" class="btn-style">登录</el-button>
+            <el-button type="primary" class="btn-style" @click="checkLogin">登录</el-button>
             <el-button type="info" class="btn-style" @click="linkToRegister">注册</el-button>
           </el-form-item>
         </el-form>
       </div>
     </div>
+    <el-dialog
+      title="提示"
+      :visible.sync="centerDialogVisible"
+      width="30%"
+      center>
+      <span>{{this.message}}</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="closeDialog">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+import { checkLogin } from 'api/user'
 export default {
   name: 'Login',
   data () {
     return {
       form: {
-        name: '',
+        number: '',
         password: ''
-      }
+      },
+      centerDialogVisible: false,
+      message: ''
     }
   },
   methods: {
     linkToRegister () {
       this.$router.push({ name: 'Register' })
+    },
+    checkLogin () {
+      checkLogin({
+        id: this.form.number,
+        phone: this.form.number,
+        password: this.form.password
+      }).then(res => {
+        if (res === true) {
+          this.$router.push({ path: `/system/${this.form.number}/info` })
+        } else if (res === false) {
+          this.centerDialogVisible = true
+          this.message = '密码错误'
+        } else {
+          this.centerDialogVisible = true
+          this.message = res
+        }
+      })
+    },
+    closeDialog () {
+      this.centerDialogVisible = false
     }
   }
 }

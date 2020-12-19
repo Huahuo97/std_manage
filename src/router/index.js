@@ -30,7 +30,7 @@ export default new Router({
       component: Register
     },
     {
-      path: '/system',
+      path: '/system/:id',
       name: 'System',
       component: System,
       children: [

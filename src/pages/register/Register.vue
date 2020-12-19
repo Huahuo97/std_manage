@@ -29,10 +29,21 @@
             </el-input>
           </el-form-item>
           <el-form-item label="">
-            <el-button type="primary">注册</el-button>
+            <el-button type="primary" @click="registerUser">注册</el-button>
             <el-button @click="resetForm('ruleForm')">重置</el-button>
           </el-form-item>
         </el-form>
+        <el-dialog
+          title="提示"
+          :visible.sync="centerDialogVisible"
+          width="30%"
+          center>
+          <span>{{this.message}}</span>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="clearForm">确 定</el-button>
+            <el-button type="primary" @click="goToLogin">登 录</el-button>
+          </span>
+        </el-dialog>
       </div>
     </div>
   </div>
@@ -40,6 +51,7 @@
 
 <script>
 import RegisterHeader from './component/Header'
+import { registerUser } from 'api/user'
 export default {
   name: 'Register',
   data () {
@@ -82,7 +94,9 @@ export default {
         repassword: [
           { required: true, validator: validatePass2, trigger: 'blur' }
         ]
-      }
+      },
+      centerDialogVisible: false,
+      message: ''
     }
   },
   components: {
@@ -91,6 +105,29 @@ export default {
   methods: {
     resetForm (formName) {
       this.$refs[formName].resetFields()
+    },
+    registerUser () {
+      registerUser({
+        id: this.form.id,
+        phone: this.form.tel,
+        password: this.form.password
+      }).then(res => {
+        console.log(res)
+        if (res === true) {
+          this.message = '注册成功'
+          this.centerDialogVisible = true
+        } else {
+          this.message = '注册失败,该学号已被注册'
+          this.centerDialogVisible = true
+        }
+      })
+    },
+    clearForm () {
+      this.resetForm('ruleForm')
+      this.centerDialogVisible = false
+    },
+    goToLogin () {
+      this.$router.push({ name: 'Login' })
     }
   }
 }
