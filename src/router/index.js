@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// login
 import Login from 'pages/login/Login'
+// student register
 import Register from 'pages/register/Register'
+// student network
 import System from 'pages/system/System'
 import StudentInfo from 'pages/system/component/StudentInfo'
 import ModifyInfo from 'pages/system/component/ModifyInfo'
@@ -10,6 +13,12 @@ import Schedule from 'pages/system/component/Schedule'
 import CourseSelect from 'pages/system/component/CourseSelect'
 import ClassApply from 'pages/system/component/ClassApply'
 import Setting from 'pages/system/component/Setting'
+// manage network
+import Manage from 'pages/manage/Manage'
+import ManagedInfo from 'pages/manage/component/ManagedInfo'
+import AddManaged from 'pages/manage/component/AddManaged'
+import ManageSetting from 'pages/manage/component/ManageSetting'
+
 Vue.use(Router)
 
 export default new Router({
@@ -30,7 +39,7 @@ export default new Router({
       component: Register
     },
     {
-      path: '/system/:id',
+      path: '/system/:index',
       name: 'System',
       component: System,
       children: [
@@ -68,6 +77,28 @@ export default new Router({
           path: 'setting',
           name: 'Setting',
           component: Setting
+        }
+      ]
+    },
+    {
+      path: '/manage/:index',
+      name: 'Manage',
+      component: Manage,
+      children: [
+        {
+          path: 'managed-info',
+          name: 'ManagedInfo',
+          component: ManagedInfo
+        },
+        {
+          path: 'add-managed',
+          name: 'AddManaged',
+          component: AddManaged
+        },
+        {
+          path: 'manage-setting',
+          name: 'ManageSetting',
+          component: ManageSetting
         }
       ]
     }

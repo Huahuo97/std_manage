@@ -116,8 +116,11 @@ export default {
         if (res === true) {
           this.message = '注册成功'
           this.centerDialogVisible = true
-        } else {
+        } else if (res === false) {
           this.message = '注册失败,该学号已被注册'
+          this.centerDialogVisible = true
+        } else {
+          this.message = '注册失败,' + res
           this.centerDialogVisible = true
         }
       })

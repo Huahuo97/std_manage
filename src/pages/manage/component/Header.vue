@@ -2,11 +2,11 @@
   <div class="header">
     <div class="logo">
       <img src="../../../assets/logo.png">
-      <span class="alt">Vue大学教务网</span>
+      <span class="alt">学生信息管理系统</span>
     </div>
     <div class="user">
       <i class="el-icon-user"></i>
-      <span class="user-info">{{this.name}}</span>
+      <span class="user-info">花火</span>
       <router-link :to="{ name: 'Login' }" class="sign-out">退出登录</router-link>
     </div>
   </div>
@@ -14,13 +14,7 @@
 
 <script>
 export default {
-  name: 'DetailHeader',
-  props: {
-    name: {
-      type: String,
-      default: ''
-    }
-  }
+  name: 'DetailHeader'
 }
 </script>
 

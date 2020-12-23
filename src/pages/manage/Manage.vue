@@ -1,6 +1,6 @@
 <template>
   <div class="contain">
-    <detail-header :name="getLoginUserName"></detail-header>
+    <detail-header></detail-header>
     <div class="center">
       <div class="left">
         <detail-nav></detail-nav>
@@ -15,15 +15,11 @@
 <script>
 import DetailHeader from './component/Header'
 import DetailNav from './component/Nav'
-import { mapGetters } from 'vuex'
 export default {
-  name: 'System',
+  name: 'Manage',
   components: {
     DetailHeader,
     DetailNav
-  },
-  computed: {
-    ...mapGetters(['getLoginUserName'])
   }
 }
 </script>

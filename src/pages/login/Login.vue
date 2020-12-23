@@ -23,6 +23,10 @@
             </el-input>
           </el-form-item>
         </el-form>
+        <div class="select">
+          <el-radio v-model="loginModel" label="student">学生登录</el-radio>
+          <el-radio v-model="loginModel" label="manage">管理者登录</el-radio>
+        </div>
         <el-form ref="sub" :model="form" label-width="100px">
           <el-form-item label="">
             <el-button type="primary" class="btn-style" @click="checkLogin">登录</el-button>
@@ -55,7 +59,8 @@ export default {
         password: ''
       },
       centerDialogVisible: false,
-      message: ''
+      message: '',
+      loginModel: ''
     }
   },
   methods: {
@@ -63,21 +68,30 @@ export default {
       this.$router.push({ name: 'Register' })
     },
     checkLogin () {
-      checkLogin({
-        id: this.form.number,
-        phone: this.form.number,
-        password: this.form.password
-      }).then(res => {
-        if (res === true) {
-          this.$router.push({ path: `/system/${this.form.number}/info` })
-        } else if (res === false) {
-          this.centerDialogVisible = true
-          this.message = '密码错误'
+      if (this.loginModel === 'student') {
+        checkLogin({
+          id: this.form.number,
+          phone: this.form.number,
+          password: this.form.password
+        }).then(res => {
+          if (res === true) {
+            this.$router.push({ path: `/system/${this.form.number}/info` })
+          } else if (res === false) {
+            this.centerDialogVisible = true
+            this.message = '密码错误'
+          } else {
+            this.centerDialogVisible = true
+            this.message = res
+          }
+        })
+      } else if (this.loginModel === 'manage') {
+        if (this.form.number === '001' && this.form.password === '001') {
+          this.$router.push({ path: `/manage/${this.form.number}/managed-info` })
         } else {
           this.centerDialogVisible = true
-          this.message = res
+          this.message = '账号不存在或密码错误'
         }
-      })
+      }
     },
     closeDialog () {
       this.centerDialogVisible = false
@@ -105,7 +119,7 @@ export default {
     z-index: 99 ;
     transform: translate(-50%, -50%);
     width: 360px;
-    height: 200px;
+    height: 240px;
     padding-top: 20px;
     padding-right: 20px;
     margin: 0 20px;
@@ -131,6 +145,10 @@ export default {
           width: 100%;
           height: 100%;
         }
+      }
+      .select {
+        margin-left: 70px;
+        margin-bottom: 20px;
       }
     }
   }
