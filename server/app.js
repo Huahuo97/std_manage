@@ -4,6 +4,8 @@ const express = require('express')
 // const bodyParser = require('body-parser')
 const login = require('./services/login')
 const register = require('./services/register')
+const signIn = require('./services/manage')
+const info = require('./services/infomation')
 
 const app = express()
 // CORS & Preflight request
@@ -21,6 +23,8 @@ app.use((req, res, next) => {
 })
 app.use('/user', login)
 app.use('/user', register)
+app.use('/manage', signIn)
+app.use('/student', info)
 const port = process.env.PORT || 3000
 const host = process.env.HOST || ''
 

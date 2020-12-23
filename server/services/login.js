@@ -7,7 +7,7 @@ router.get('/login/check', async (req, res) => {
   const phone = req.query.phone
   const password = req.query.password
   try {
-    const user = await Users.findOne({ student_id: id })
+    const user = await Users.findOne({ student_id: id }) || await Users.findOne({ contact_number: phone })
     if (user.passwords === password) {
       res.send(true)
     } else {
