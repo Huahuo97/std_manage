@@ -1,30 +1,35 @@
-# std_manage
+# 学生信息管理系统
 
-> students' manage system
+> 主要技术栈： vue + node.js + express + mongoose
 
-## Build Setup
+## 依赖环境
 
+> node.js + mongobd + npm
+
+## 快速开始
+
+### 前端部分
 ``` bash
-# install dependencies
+# 安装依赖
 npm install
 
-# serve with hot reload at localhost:8080
+# 运行项目
 npm run dev
 
-# build for production with minification
+# 打包项目
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### 后台服务端
+``` bash
+# 安装依赖
+npm install
+
+# 运行后台
+node ./app.js
+```
+## 简要说明
++ 学生信息管理系统支持学生登录和管理者登录模式, 管理者登录默认用户为：001, 密码为：001, 学生登录需要管理者在管理界面添加学生基本信息后，才能注册登录，学生注册时需要学生数据库有对应的学号后才能注册。
++ 本系统暂时支持学生信息管理，对于教务信息查询等功能还未完善。
++ 菜鸟养成记：通过搭建该系统，主要练习后台服务node和数据库mongodb
